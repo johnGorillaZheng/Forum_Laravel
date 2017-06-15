@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Mail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -62,10 +63,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $confirmation_token = str_random(40);
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'avatar' => '/image/avatars/default.png',
+            'confirmation_token' => $confirmation_token,
             'password' => bcrypt($data['password']),
         ]);
+        $data['confirmation_token'] = $confirmation_token;
+        Mail::send('auth.email',$data,function($message) use($data){
+            $message->to($data['email']);
+            $message->subject('Registration Confirmation');
+        });
+
+
+        return $user;
     }
 }
