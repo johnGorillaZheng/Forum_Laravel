@@ -20,3 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/users/confirmation/{email_token}', 'EmailController@confirmation')->name('confirmation');
+
+Route::resource('questions','QuestionsController',['names' => [
+		'create' => 'questions.create',
+		'show' => 'questions.show',
+	]]);
