@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Question;
+use App\Topic;
 
 class QuestionsController extends Controller
 {
@@ -30,8 +31,9 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        //
-        return view('questions.create');
+        $topics = Topic::pluck('name','id')->toArray();
+
+        return view('questions.create',compact('topics'));
     }
 
     /**
