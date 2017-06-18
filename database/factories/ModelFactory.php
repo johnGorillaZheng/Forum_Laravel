@@ -28,6 +28,6 @@ $factory->define(App\Topic::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
-        'question_count' => rand(0,50),
+        'question_count' => rand(0,100),
     ];
 });
