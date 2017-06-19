@@ -18,11 +18,12 @@
 
                         <div class="form-group">
                             <label for="topic">话题:</label>
-                            <select name="topics"  class="js-example-basic-multiple" multiple="multiple">
+                            <select name="topics[]"  id="js-example-basic-multiple" multiple="multiple" class="form-control">
                                 @foreach($topics as $key => $topic)
                                     <option value="{{ $key }}">{{ $topic }}</option>
                                 @endforeach
                             </select>
+                            <select name="" id="" class="js-data-example-ajax form-control"></select>
                         </div>
                         <div class="form-group">
                             <label for="body">描述:</label>
@@ -58,8 +59,52 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script>
-$(".js-example-basic-multiple").select2({
-});      
+
+$(document).ready(function(){
+    $("#js-example-basic-multiple").select2({});  
+    function formatTopic (topic) {
+
+        return '<div class="select2-result-repository clearfix">' +
+        '<div class="select2-result-repository_meta">' +
+        '<div class="select2-result-repository_title">' +
+        topic.name ? topic.name : "Laravel" +
+        '</div></div></div>';
+    }
+
+    function formatTopicSelection (topic) {
+        return topic.name || topic.text;
+    }
+
+    $(".js-data-example-ajax").select2({
+        tags:true,
+        placeholder:'选择相关话题',
+        minimumInputLength: 1,
+        ajax: {
+            url: "／api/topics",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                };
+            },
+            processResults: function (data, params) {
+            // parse the results into the format expected by Select2.
+            // since we are using custom formatting functions we do not need to
+            // alter the remote JSON data
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        templateResult: formatTopic, // omitted for brevity, see the source of this page
+        templateSelection: formatTopicSelection // omitted for brevity, see the source of this page  
+
+    });
+  });       
 </script>
+
 
 @endsection

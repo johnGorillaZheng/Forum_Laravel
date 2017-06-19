@@ -43,7 +43,8 @@ class QuestionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        dd($request->get('topics'));
         $data = [
             'title' => $request->get('title'),
             'body' => $request->get('body'),

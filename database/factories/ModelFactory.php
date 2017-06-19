@@ -27,7 +27,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Topic::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => $faker->name,
-        'question_count' => rand(0,100),
+        'name' => $faker->word,
+        'bio' => $faker->paragraph,
+        'question_count' => 1,
     ];
 });
+
