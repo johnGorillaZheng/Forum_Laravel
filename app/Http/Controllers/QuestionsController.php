@@ -31,9 +31,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        $topics = Topic::pluck('name','id')->toArray();
-
-        return view('questions.create',compact('topics'));
+        return view('questions.create');
     }
 
     /**
@@ -44,7 +42,7 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {   
-        dd($request->get('topics'));
+        $topics = $this->normalizeTopic($request->get('topics'));
         $data = [
             'title' => $request->get('title'),
             'body' => $request->get('body'),
@@ -52,6 +50,7 @@ class QuestionsController extends Controller
         ];
 
         $question = Question::create($data);
+        $question->topics()->attach($topics);
         return redirect()->route('questions.show',[$question->id]);
 
     }
@@ -64,7 +63,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = Question::find($id);
+        $question = Question::where('id',$id)->with('topics')->first();
         return view('questions.show',compact('question'));
     }
 
@@ -100,5 +99,17 @@ class QuestionsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function normalizeTopic(array $topics)
+    {
+        return  collect($topics)->map(function ($topic){
+            if(is_numeric($topic)){
+                Topic::find($topic)->increment('question_count');
+                return (int)$topic;
+            }
+            $newTopic = Topic::create(['name' => $topic,'question_count' => 1]);
+            return $newTopic->id; 
+        })->toArray();
     }
 }
