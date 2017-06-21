@@ -20,13 +20,23 @@
                     {!! $question->body !!}
                     <div class="actions">
                         @if(Auth::check() && Auth::user()->owns($question))
-                            <span>
+                            <span style="float: left;width: 55px">
                                 <a href="/questions/{{ $question->id }}/edit ">
-                                    编辑
+                                    <button class="btn btn-link">
+                                        编辑<span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
                                 </a>
                             </span>
+                            <form action="/questions/{{ $question->id }}" method="POST">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button class="btn btn-link">
+                                    删除<span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                            
                         @endif
-                </div>
+                    </div>
                 </div>
 
                 

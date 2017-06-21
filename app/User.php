@@ -31,4 +31,5 @@ class User extends Authenticatable
     {
         return $this->id == $model->user_id;        
     }
+
 }
