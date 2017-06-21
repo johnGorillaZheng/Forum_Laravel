@@ -6,16 +6,30 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{ $question->title }}
+                    <ul class="pager">
                     @foreach($question->topics as $topic)
-                        <span class="topic">{{ $topic->name }}</span>
+                        <li class="previous">
+                            <a href="#">
+                                {{ $topic->name }}
+                            </a>                            
+                        </li>
                     @endforeach
+                    </ul>
+                    <h3>{{ $question->title }}</h3>
+        
+                    {!! $question->body !!}
+                    <div class="actions">
+                        @if(Auth::check() && Auth::user()->owns($question))
+                            <span>
+                                <a href="/questions/{{ $question->id }}/edit ">
+                                    编辑
+                                </a>
+                            </span>
+                        @endif
+                </div>
                 </div>
 
-                <div class="panel-body">
-                    {!! $question->body !!}
-					
-                </div>
+                
             </div>
         </div>
     </div>
