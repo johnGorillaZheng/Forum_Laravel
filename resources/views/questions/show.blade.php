@@ -45,19 +45,42 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{$question->comments_count}} 个答案
+                    {{$question->answers_count}} 个答案
                 </div>
                                  
                 <div class="panel-body">
-                    <form action="/questions/{{$question->id}}/answer " method="post">
-                        {!! csrf_field() !!}
+                    <div class="panel-body">
+                        @foreach($question->answers as $answer)
+                            <div class="panel-body">
+                                <div class="col-xs-2">
+                                        <img src="{{ $answer->user->avatar }}" 
+                                            alt="{{ $answer->user->name }}"
+                                            style="width: 60px;">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="/user/{{ $answer->user->name }}">
+                                            {{ $answer->user->name }}
+                                        </a>
+                                    </h4>
+                                    {!! $answer->body !!}
+                                    {{ $answer->updated_at }}
+                                </div>
+                            </div>
+                            <hr>
+                        @endforeach
+                    </div>
+                    <div class="panel-body">
+                        <form action="/questions/{{$question->id}}/answer " method="post">
+                            {!! csrf_field() !!}
 
-                        <div class="form-group">
-                            <label for="body">回答:</label>
-                            <script id="container" name="body" style="height: 250px" type="text/plain"></script>
-                        </div>
-                            <center><button class="btn btn-success " type="submit">提交答案</button></center>
-                    </form>
+                            <div class="form-group">
+                                <label for="body">回答:</label>
+                                <script id="container" name="body" style="height: 120px" type="text/plain"></script>
+                            </div>
+                                <center><button class="btn btn-success " type="submit">提交答案</button></center>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>   
