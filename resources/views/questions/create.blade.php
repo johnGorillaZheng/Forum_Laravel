@@ -27,9 +27,9 @@
                             <script id="container" name="body" style="height: 250px" type="text/plain"></script>
                         </div>
                 		<center><button class="btn btn-success " type="submit">发布问题</button></center>
-                	</form>
-					
+                	</form>	
                 </div>
+                
             </div>
         </div>
     </div>

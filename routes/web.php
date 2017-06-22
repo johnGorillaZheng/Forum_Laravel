@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/','QuestionsController@index');
+Route::get('/','WelcomeController@show');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'QuestionsController@index')->name('home');
 
 Route::get('/users/confirmation/{email_token}', 'EmailController@confirmation')->name('confirmation');
 
@@ -23,3 +23,5 @@ Route::resource('questions','QuestionsController',['names' => [
 		'create' => 'questions.create',
 		'show' => 'questions.show',
 	]]);
+
+Route::post('questions/{question}/answer','AnswersController@store');
