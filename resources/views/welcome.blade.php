@@ -81,8 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    菊花痒，满地伤<br>
-                    王建元，快帮忙
+                    不管天涯何处，<br>燕阳永远是我孙子
                 </div>
 
                 <div class="links">

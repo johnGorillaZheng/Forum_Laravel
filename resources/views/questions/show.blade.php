@@ -7,19 +7,23 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                <div class="panel-body">
                     <ul class="pager">
-                    @foreach($question->topics as $topic)
-                        <li class="previous">
-                            <a href="#">
-                                {{ $topic->name }}
-                            </a>                            
-                        </li>
-                    @endforeach
+                        @foreach($question->topics as $topic)
+                            <li class="previous">
+                                <a href="#">
+                                    {{ $topic->name }}
+                                </a>                            
+                            </li>
+                        @endforeach
                     </ul>
                     <h3>{{ $question->title }}</h3>
-        
-                    {!! $question->body !!}
-                    <div class="actions">
+                </div>
+   
+                    <div class="panel-body">
+                        {!! $question->body !!}
+                    </div>
+                    <div class="panel-body">
                         @if(Auth::check() && Auth::user()->owns($question))
                             <span style="float: left;width: 55px">
                                 <a href="/questions/{{ $question->id }}/edit ">
@@ -57,7 +61,7 @@
                                             alt="{{ $answer->user->name }}"
                                             style="width: 60px;">
                                 </div>
-                                <div class="media-body">
+                                <div class="col-xs-7">
                                     <h4 class="media-heading">
                                         <a href="/user/{{ $answer->user->name }}">
                                             {{ $answer->user->name }}

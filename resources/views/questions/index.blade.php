@@ -10,23 +10,27 @@
                 </div>
                 <div class="panel-body">
                     @foreach($questions as $question)
-                        <div class="panel-">
-                            <div class="col-md-2">
-                                <a href="">
-                                    <img src="{{ $question->user->avatar }}" 
-                                        alt="{{ $question->user->name }}"
-                                        style="width: 75px;">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    <a href="/questions/{{ $question->id }}">
-                                        {{ $question->title }}
+                        <div class="panel-body">
+                            
+                                <div class="col-xs-2">
+                                    <a href="">
+                                        <img src="{{ $question->user->avatar }}" 
+                                            alt="{{ $question->user->name }}"
+                                            style="width: 75px;">
                                     </a>
-
-                                </h4>
-                            </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <h4 class="media-heading">
+                                        <a href="/questions/{{ $question->id }}">
+                                            <div>{{ $question->title }}</div>
+                                            <h4></h4>
+                                            <h6>更新于：{{ $question->updated_at }}</h6>
+                                        </a>
+                                    </h4>
+                                </div> 
+                            
                         </div>
+                        <hr>
                     @endforeach
                 </div>
             </div>
