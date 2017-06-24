@@ -53,6 +53,7 @@ class QuestionsController extends Controller
         ];
 
         $question = $this->questionRepository->create($data);
+        $question->increment('following_count');
         $question->topics()->attach($topics);
         return redirect()->route('questions.show',[$question->id]);
 

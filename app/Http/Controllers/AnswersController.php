@@ -18,7 +18,7 @@ class AnswersController extends Controller
 		$this->answer = $answer;
 	}
 
-    public function store(StoreAnswerRequest $request, $question)
+    public function store(Request $request, $question)
     {
     	$answer = $this->answer->create([
     		'question_id' => $question,

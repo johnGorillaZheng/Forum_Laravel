@@ -4,22 +4,22 @@
 @include('vendor.ueditor.assets')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                <div class="panel-body">
-                    <ul class="pager">
-                        @foreach($question->topics as $topic)
-                            <li class="previous">
-                                <a href="#">
-                                    {{ $topic->name }}
-                                </a>                            
-                            </li>
-                        @endforeach
-                    </ul>
-                    <h3>{{ $question->title }}</h3>
-                </div>
-   
+                    <div class="panel-body">
+                        <ul class="pager">
+                            @foreach($question->topics as $topic)
+                                <li class="previous">
+                                    <a href="#">
+                                        {{ $topic->name }}
+                                    </a>                            
+                                </li>
+                            @endforeach
+                        </ul>
+                        <h3>{{ $question->title }}</h3>
+                    </div>
+       
                     <div class="panel-body">
                         {!! $question->body !!}
                     </div>
@@ -38,15 +38,36 @@
                                 <button class="btn btn-link">
                                     删除<span class="glyphicon glyphicon-trash"></span>
                                 </button>
-                            </form>
-                            
+                            </form>                  
                         @endif
                     </div>
                 </div>
-
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <center>
+                        <h2>{{ $question->following_count }}</h2>
+                        <span>关注者</span>
+                    </center>
+                    
+                </div>
+                <div class="panel-body">
+                    <center>
+                        <a href="/questions/{{$question->id}}/follow" class="btn btn-default">
+                            关注该问题
+                        </a>
+                        <a href="#container" class="btn btn-primary">
+                            编写答案
+                        </a>
+                    </center>
                 </div>
             </div>
-        <div class="col-md-8 col-md-offset-2">
+        </div>
+
+        <div class="col-md-8 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     {{$question->answers_count}} 个答案
@@ -74,20 +95,29 @@
                             <hr>
                         @endforeach
                     </div>
-                    <div class="panel-body">
-                        <form action="/questions/{{$question->id}}/answer " method="post">
-                            {!! csrf_field() !!}
+                    @if(Auth::check())
+                        <div class="panel-body">
+                            <form action="/questions/{{$question->id}}/answer " method="post">
+                                {!! csrf_field() !!}
 
-                            <div class="form-group">
-                                <label for="body">回答:</label>
-                                <script id="container" name="body" style="height: 120px" type="text/plain"></script>
-                            </div>
-                                <center><button class="btn btn-success " type="submit">提交答案</button></center>
-                        </form>
-                    </div>
+                                <div class="form-group">
+                                    <label for="body">回答:</label>
+                                    <script id="container" name="body" style="height: 120px" type="text/plain"></script>
+                                </div>
+                                    <center><button class="btn btn-success " type="submit">提交答案</button></center>
+                            </form>
+                        </div>
+                    @else
+                        <center>
+                            <a href="/login" class="btn btn-primary btn-block">请登陆</a>
+                        </center>    
+                    @endif
                 </div>
             </div>
-        </div>   
+        </div> 
+
+
+
     </div>
 </div>
 
