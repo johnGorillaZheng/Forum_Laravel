@@ -9,7 +9,7 @@ class QuestionFollowController extends Controller
 {
     public function follow($question)
     {
-    	Auth::user()->follows($question);
+    	Auth::user()->followsThis($question);
 
     	return back();
     }

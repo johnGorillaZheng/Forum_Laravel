@@ -1,9 +1,10 @@
 @extends('layouts.app')
-
-@section('content')
 @include('vendor.ueditor.assets')
+@section('content')
+
 <div class="container">
     <div class="row">
+    
         <div class="col-md-8 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -56,9 +57,12 @@
                 </div>
                 <div class="panel-body">
                     <center>
-                        <a href="/questions/{{$question->id}}/follow" class="btn btn-default">
-                            关注该问题
-                        </a>
+<!--                         <a href="/questions/{{$question->id}}/follow" 
+                        class="btn btn-default {{Auth::user()->followed($question->id) ? 'btn-success' : ''}}">
+                            {{Auth::user()->followed($question->id) ? '已关注' : '关注该问题'}}
+                        </a> -->
+                        <question-follow-button question="{{ $question->id }}" user="{{ Auth::id() }}"></question-follow-button>
+                       
                         <a href="#container" class="btn btn-primary">
                             编写答案
                         </a>
@@ -121,8 +125,7 @@
     </div>
 </div>
 
-
-
+@section('js')
 <style type="text/css" media="screen">
     .panel-body img{
         width: 100%;
@@ -145,4 +148,5 @@
         ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
     });    
 </script>
+@endsection
 @endsection

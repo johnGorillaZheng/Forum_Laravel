@@ -39,9 +39,5 @@
 </div>
 
 
-<style type="text/css" media="screen">
-    .panel-body img{
-        width: 100%;
-    }
-</style>
+
 @endsection
