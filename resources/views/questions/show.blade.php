@@ -120,33 +120,50 @@
             </div>
         </div> 
 
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <center>
+                        <span><h4>关于提问者</h4></span>
+                        <a href="">
+                            <div class="panel-body">
+                                <img width="72" src="{{ $question->user->avatar }}" alt="{ $question->user->name }}">
+                            </div>    
+                                <span><h3>{{$question->user->name}}</h3></span>
+                        </a>
+                        <span><h4>{{ $question->following_count }}人关注此人</h4></span>
+                        
+                    </center>
+                </div>
+                <div class="panel-body">
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <center>
+                                <span>
+                                    <a href="#container" class="btn btn-primary">
+                                        关注此人
+                                    </a>
 
-
+                                    <a href="#container" class="btn btn-default">
+                                        发送私信
+                                    </a>
+                                </span>                       
+                               
+                            </center>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-@section('js')
+
 <style type="text/css" media="screen">
     .panel-body img{
         width: 100%;
     }
 </style>
 
-<script type="text/javascript">
-    var ue = UE.getEditor('container',{
-    toolbars: [
-            ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft','justifycenter', 'justifyright',  'attachment', 'insertimage','fullscreen']
-        ],
-    elementPathEnabled: false,
-    enableContextMenu: false,
-    autoClearEmptyNode:true,
-    wordCount:false,
-    imagePopup:false,
-    autotypeset:{ indent: true,imageBlockLine: 'center' }
-    });
-    ue.ready(function() {
-        ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
-    });    
-</script>
-@endsection
+
 @endsection

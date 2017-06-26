@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'avatar' => '/image/avatars/default.png',
             'confirmation_token' => $confirmation_token,
             'password' => bcrypt($data['password']),
+            'api_token' => str_random(60),
         ]);
         $data['confirmation_token'] = $confirmation_token;
         Mail::send('auth.email',$data,function($message) use($data){
