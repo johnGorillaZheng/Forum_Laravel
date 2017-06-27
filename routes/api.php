@@ -51,6 +51,6 @@ Route::post('/question/follow',function (Request $request) {
     return response()->json(['followed' => true]);
 });
 
-Route::get('/user/followers','FollowersController@index');
+Route::post('/user/followers','FollowersController@index');
 
 Route::post('/user/follow','FollowersController@follow');
