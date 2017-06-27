@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Repositories\QuestionRepository;
 
+
 class QuestionsController extends Controller
 {
     protected $questionRepository;

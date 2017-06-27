@@ -50,19 +50,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <center>
+                        <h4>这个问题</h4>
                         <h2>{{ $question->following_count }}</h2>
-                        <span>关注者</span>
+                        <h4>关注者</h4>
                     </center>
                     
                 </div>
                 <div class="panel-body">
                     <center>
-<!--                         <a href="/questions/{{$question->id}}/follow" 
-                        class="btn btn-default {{Auth::user()->followed($question->id) ? 'btn-success' : ''}}">
-                            {{Auth::user()->followed($question->id) ? '已关注' : '关注该问题'}}
-                        </a> -->
-                        <question-follow-button question="{{ $question->id }}" user="{{ Auth::id() }}"></question-follow-button>
-                       
+                        <question-follow-button question="{{ $question->id }}" user="{{ Auth::id() }}">
+                        </question-follow-button>               
                         <a href="#container" class="btn btn-primary">
                             编写答案
                         </a>
@@ -124,31 +121,36 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <center>
-                        <span><h4>关于提问者</h4></span>
+                        <span><h3>关于提问者</h3></span>                            
                         <a href="">
-                            <div class="panel-body">
-                                <img width="72" src="{{ $question->user->avatar }}" alt="{ $question->user->name }}">
+                            <div>
+                                <img width="80px" src="{{ $question->user->avatar }}" alt="{ $question->user->name }}">
                             </div>    
                                 <span><h3>{{$question->user->name}}</h3></span>
                         </a>
-                        <span><h4>{{ $question->following_count }}人关注此人</h4></span>
-                        
+                        <span><h4>{{ $question->user->followers_count }}人关注此人</h4></span>
                     </center>
+
                 </div>
                 <div class="panel-body">
+                    <div class="col-xs-6">
+                        <center>
+                            <span><h4>提问</h4></span><span><h4>{{$question->user->questions_count}}</h4></span>
+                        </center>
+                    </div>
+                    <div class="col-xs-6">
+                        <center>
+                            <span><h4>回答</h4></span><span><h4>{{$question->user->answers_count}}</h4></span>
+                        </center>
+                    </div>
                     <div class="media-body">
                         <h4 class="media-heading">
                             <center>
-                                <span>
-                                    <a href="#container" class="btn btn-primary">
-                                        关注此人
-                                    </a>
-
+                                    <user-follow-button user="{{$question->user_id}}" me="{{Auth::id()}}">
+                                    </user-follow-button>
                                     <a href="#container" class="btn btn-default">
                                         发送私信
-                                    </a>
-                                </span>                       
-                               
+                                    </a>                       
                             </center>
                         </h4>
                     </div>
@@ -157,13 +159,4 @@
         </div>
     </div>
 </div>
-
-
-<style type="text/css" media="screen">
-    .panel-body img{
-        width: 100%;
-    }
-</style>
-
-
 @endsection

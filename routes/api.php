@@ -1,6 +1,7 @@
  <?php
 
 use Illuminate\Http\Request;
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,16 +40,17 @@ Route::post('/question/follower',function (Request $request) {
 
 Route::post('/question/follow',function (Request $request) {
 
-	$followed = \App\Follow::where('question_id',$request->get('question'))
-							->where('user_id',$request->get('user'))
-							->first();
-	if($followed != null) {
-		$followed->delete();
+	$user = \App\User::find($request->get('user'));
+	$question = \App\Question::find($request->get('question'));
+	$followed = $user->followsThis($question->id);
+	if(count($followed['detached'])>0) {
+		$question->decrement('following_count');
 		return response()->json(['followed' => false]);	
 	}
-	\App\Follow::create([
-			'question_id' => $request->get('question'),
-			'user_id' => $request->get('user')
-	]);
+	$question->increment('following_count');
     return response()->json(['followed' => true]);
 });
+
+Route::get('/user/followers','FollowersController@index');
+
+Route::post('/user/follow','FollowersController@follow');

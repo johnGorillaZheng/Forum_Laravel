@@ -2,6 +2,7 @@
 namespace App\Repositories;
 use App\Question; 
 use App\Topic;
+use App\Follow;
 /**
 * 
 */
@@ -30,10 +31,9 @@ class QuestionRepository
         })->toArray();
 	}
 
-	public function byId($id){
-
+	public function byId($id)
+	{
 		return Question::find($id);
-
 	}
 
 	public function getQuestionFeed()
