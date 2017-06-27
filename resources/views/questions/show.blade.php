@@ -143,6 +143,7 @@
                             <span><h4>回答</h4></span><span><h4>{{$question->user->answers_count}}</h4></span>
                         </center>
                     </div>
+                    @if($question->user_id != Auth::id())
                     <div class="media-body">
                         <h4 class="media-heading">
                             <center>
@@ -154,6 +155,8 @@
                             </center>
                         </h4>
                     </div>
+                    @else
+                    @endif
                 </div>
             </div>
         </div>
