@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Auth;
 
 class NewUserFollowNotification extends Notification
 {
@@ -16,9 +17,9 @@ class NewUserFollowNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($userToAnounce)
     {
-        //
+        $this->user = $userToAnounce;
     }
 
     /**
@@ -29,8 +30,19 @@ class NewUserFollowNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            'name' => $this->user->name,
+
+        ];
+    }
+
+
+
 
     /**
      * Get the mail representation of the notification.
@@ -38,13 +50,13 @@ class NewUserFollowNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
+    // public function toMail($notifiable)
+    // {
+    //     return (new MailMessage)
+    //                 ->line('The introduction to the notification.')
+    //                 ->action('Notification Action', url('/'))
+    //                 ->line('Thank you for using our application!');
+    // }
 
     /**
      * Get the array representation of the notification.
