@@ -57,49 +57,47 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script>
 
-$(document).ready(function(){
-    function formatTopic (topic) {
-                return "<div class='select2-result-repository clearfix'>" +
-                "<div class='select2-result-repository__meta'>" +
-                "<div class='select2-result-repository__title'>" +
-                topic.name ? topic.name : "Laravel"   +
-                    "</div></div></div>";
-    }
+    $(document).ready(function(){
+        function formatTopic (topic) {
+                    return "<div class='select2-result-repository clearfix'>" +
+                    "<div class='select2-result-repository__meta'>" +
+                    "<div class='select2-result-repository__title'>" +
+                    topic.name ? topic.name : "Laravel"   +
+                        "</div></div></div>";
+        }
 
-    function formatTopicSelection (topic) {
-        return topic.name || topic.text;
-    }
-
-    $(".js-example-placeholder-multiple").select2({
-        tags:true,
-        placeholder:'选择相关话题',
-        minimumInputLength: 1,
-        ajax: {
-            url: "/api/topics",
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                    q: params.term, // search term
-                };
-            },
-            processResults: function (data, params) {
-            // parse the results into the format expected by Select2.
-            // since we are using custom formatting functions we do not need to
-            // alter the remote JSON data
-                return {
-                    results: data
-                };
-            },
-            cache: true
-        },
-        
-        templateResult: formatTopic, // omitted for brevity, see the source of this page
-        templateSelection: formatTopicSelection, // omitted for brevity, see the source of this page  
-        escapeMarkup: function (markup) { return markup; } // let our custom formatter work
-    });
+        function formatTopicSelection (topic) {
+            return topic.name || topic.text;
+        }
     
-  });       
+        $(".js-example-placeholder-multiple").select2({
+            tags:true,
+            placeholder:'选择相关话题',
+            minimumInputLength: 1,
+            ajax: {
+                url: "/api/topics",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term, // search term
+                    };
+                },
+                processResults: function (data, params) {
+                // parse the results into the format expected by Select2.
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            },
+            templateResult: formatTopic, // omitted for brevity, see the source of this page
+            templateSelection: formatTopicSelection, // omitted for brevity, see the source of this page  
+            escapeMarkup: function (markup) { return markup; } // let our custom formatter work
+        });
+    });       
 </script>
 
 
