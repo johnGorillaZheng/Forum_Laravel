@@ -32,7 +32,6 @@ Route::get('/topics',function(Request $request){
 });
 
 Route::post('/question/follower',function (Request $request) {
-
 	$followed = \App\Follow::where('question_id',$request->get('question'))
 							->where('user_id',$request->get('user'))
 							->count();
@@ -44,7 +43,6 @@ Route::post('/question/follower',function (Request $request) {
 });
 
 Route::post('/question/follow',function (Request $request) {
-
 	$user = \App\User::find($request->get('user'));
 	$question = \App\Question::find($request->get('question'));
 	$followed = $user->followsThis($question->id);
@@ -59,3 +57,7 @@ Route::post('/question/follow',function (Request $request) {
 Route::post('/user/followers','FollowersController@index');
 
 Route::post('/user/follow','FollowersController@follow');
+
+Route::post('/answer/votes/users','VotesController@users');
+
+Route::post('/user/vote','VotesController@vote');

@@ -59,7 +59,7 @@
                 <div class="panel-body">
                     <center>
                         <question-follow-button question="{{ $question->id }}" user="{{ Auth::id() }}">
-                        </question-follow-button>               
+                        </question-follow-button>              
                         <a href="#container" class="btn btn-primary">
                             编写答案
                         </a>
@@ -81,7 +81,7 @@
                                 <div class="col-xs-2">
                                         <img src="{{ $answer->user->avatar }}" 
                                             alt="{{ $answer->user->name }}"
-                                            style="width: 60px;">
+                                            style="width: 60px;"><br>      
                                 </div>
                                 <div class="col-xs-7">
                                     <h4 class="media-heading">
@@ -90,7 +90,8 @@
                                         </a>
                                     </h4>
                                     {!! $answer->body !!}
-                                    {{ $answer->updated_at }}
+                                    {!! $answer->updated_at !!} <br>
+                                    <user-vote-button answer="{{ $answer->id }}" me="{{ Auth::id() }}" count="{{ $answer->votes_count }}"></user-vote-button>
                                 </div>
                             </div>
                             <hr>
