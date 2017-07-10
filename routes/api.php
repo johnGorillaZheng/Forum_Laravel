@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use Illuminate\Http\Request;
 
@@ -61,3 +61,5 @@ Route::post('/user/follow','FollowersController@follow');
 Route::post('/answer/votes/users','VotesController@users');
 
 Route::post('/user/vote','VotesController@vote');
+
+Route::post('/message/store','MessageController@store');

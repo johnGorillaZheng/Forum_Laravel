@@ -150,9 +150,7 @@
                             <center>
                                     <user-follow-button user="{{$question->user_id}}" me="{{Auth::id()}}">
                                     </user-follow-button>
-                                    <a href="#container" class="btn btn-default">
-                                        发送私信
-                                    </a>                       
+                                    <send-message user="{{$question->user_id}}" me="{{Auth::id()}}"></send-messag>
                             </center>
                         </h4>
                     </div>

@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Answer;
+use App\Repositories\AnswerRepository;
 
 class VotesController extends Controller
 {
     protected $answer;
 
-    public function __constructor(AnswerRepository $answer)
+    public function __construct(AnswerRepository $answer)
     {
     	$this->answer = $answer;
     }

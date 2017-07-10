@@ -13,7 +13,7 @@ class QuestionsController extends Controller
 
     public function __construct(QuestionRepository $questionRepository)
     {
-        $this->middleware('auth')->except(['index','show']);
+        $this->middleware('auth');
         $this->questionRepository = $questionRepository;
     }
 
