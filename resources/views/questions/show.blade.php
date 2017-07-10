@@ -41,6 +41,11 @@
                                 </button>
                             </form>                  
                         @endif
+                        <comments type="question" 
+                                  model="{{ $question->id }}"
+                                  count="{{ $question->comments()->count() }}"
+                                  me="{{ Auth::id() }}">
+                        </comments>
                     </div>
                 </div>
             </div>
@@ -91,7 +96,15 @@
                                     </h4>
                                     {!! $answer->body !!}
                                     {!! $answer->updated_at !!} <br>
-                                    <user-vote-button answer="{{ $answer->id }}" me="{{ Auth::id() }}" count="{{ $answer->votes_count }}"></user-vote-button>
+                                    <user-vote-button answer="{{ $answer->id }}" 
+                                                      me="{{ Auth::id() }}" 
+                                                      count="{{ $answer->votes_count }}">
+                                    </user-vote-button>
+                                    <comments type="answer" 
+                                              model="{{ $answer->id }}"
+                                              count="{{ $answer->comments()->count() }}"
+                                              me="{{ Auth::id() }}">
+                                    </comments>
                                 </div>
                             </div>
                             <hr>

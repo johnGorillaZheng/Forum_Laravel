@@ -14,6 +14,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
+    <script>
+        @if(Auth::check())
+            window.MyForum = {
+                name:"{{Auth::user()->name}}",
+                avatar:"{{Auth::user()->avatar}}"
+            }
+        @endif
+    </script>
+
 </head>
 <body>
     <div id="app">
