@@ -84,9 +84,9 @@
                         @foreach($question->answers as $answer)
                             <div class="panel-body">
                                 <div class="col-xs-2">
-                                        <img src="{{ $answer->user->avatar }}" 
+                                    <img src="{{ $answer->user->avatar }}" 
                                             alt="{{ $answer->user->name }}"
-                                            style="width: 60px;"><br>      
+                                            style="width: 60px;">  
                                 </div>
                                 <div class="col-xs-7">
                                     <h4 class="media-heading">
@@ -98,14 +98,17 @@
                                     {!! $answer->updated_at !!} <br>
                                     <user-vote-button answer="{{ $answer->id }}" 
                                                       me="{{ Auth::id() }}" 
-                                                      count="{{ $answer->votes_count }}">
+                                                      count="{{ $answer->votes_count }}"
+                                                      style="float: left;">
                                     </user-vote-button>
                                     <comments type="answer" 
                                               model="{{ $answer->id }}"
                                               count="{{ $answer->comments()->count() }}"
                                               me="{{ Auth::id() }}">
-                                    </comments>
+                                    </comments> 
                                 </div>
+
+  
                             </div>
                             <hr>
                         @endforeach

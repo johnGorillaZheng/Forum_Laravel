@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="button is-naked delete-button" 
+        <button class="btn btn-primary" 
                 @click="showCommentsForm"
                 v-text="text">
         </button>
