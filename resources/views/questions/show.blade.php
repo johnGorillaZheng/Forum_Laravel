@@ -10,10 +10,10 @@
                 <div class="panel-heading">
                     <div class="panel-body">
                         <ul class="pager">
-                            @foreach($question->topics as $topic)
+                            @foreach($topics as $topic)
                                 <li class="previous">
                                     <a href="#">
-                                        {{ $topic->name }}
+                                        {{ $topic->topic_name }}
                                     </a>                            
                                 </li>
                             @endforeach
@@ -43,7 +43,7 @@
                         @endif
                         <comments type="question" 
                                   model="{{ $question->id }}"
-                                  count="{{ $question->comments()->count() }}"
+                                  count="{{ $question->comments_count }}"
                                   me="{{ Auth::id() }}">
                         </comments>
                     </div>
@@ -81,7 +81,7 @@
                                  
                 <div class="panel-body">
                     <div class="panel-body">
-                        @foreach($question->answers as $answer)
+                        @foreach($answers as $answer)
                             <div class="panel-body">
                                 <div class="col-xs-2">
                                     <img src="{{ $answer->user->avatar }}" 
@@ -103,7 +103,7 @@
                                     </user-vote-button>
                                     <comments type="answer" 
                                               model="{{ $answer->id }}"
-                                              count="{{ $answer->comments()->count() }}"
+                                              count="{{ $answer->comments_count }}"
                                               me="{{ Auth::id() }}">
                                     </comments> 
                                 </div>

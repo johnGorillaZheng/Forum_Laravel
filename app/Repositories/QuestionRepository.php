@@ -3,15 +3,27 @@ namespace App\Repositories;
 use App\Question; 
 use App\Topic;
 use App\Follow;
+use App\Answer;
 /**
 * 
 */
 class QuestionRepository
 {
 	
-	public function byIdWithTopicsAndAnswers($id)
+	public function ownedAnswers($id)
 	{
-		return Question::where('id',$id)->with(['topics','answers'])->first();
+		return Answer::where('question_id',$id)->with('user')->get();
+	}
+
+	public function ownedTopics($id)
+	{
+		return Topic::join('question_topic','topics.id','=','question_topic.topic_id')
+						->join('questions','questions.id','=','question_topic.question_id')
+						->select(
+							'topics.name as topic_name'
+							)
+						->where('question_topic.question_id',$id)
+						->get();
 	}
 
 	public function create(array $attributes)

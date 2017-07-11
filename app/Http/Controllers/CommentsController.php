@@ -33,6 +33,13 @@ class CommentsController extends Controller
     public function store()
     {
     	$model = $this->getModelNameFromType(request('type'));
+        if($model == 'question') {
+            $questionToChange = $this->question->byId(request('model'));
+            $questionToChange->increment('comments_count');
+        } else {
+            $answerToChange = $this->answer->byId(request('model'));
+            $answerToChange->increment('comments_count');
+        }
     	$comment = $this->comment->create([
     		'commentable_id' => request('model'),
     		'commentable_type' => $model,

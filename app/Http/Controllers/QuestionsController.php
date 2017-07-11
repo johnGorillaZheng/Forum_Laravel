@@ -68,8 +68,10 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
-        return view('questions.show',compact('question'));
+        $question = $this->questionRepository->byId($id);
+        $answers = $this->questionRepository->ownedAnswers($id);
+        $topics = $this->questionRepository->ownedTopics($id);
+        return view('questions.show',compact('question','answers','topics'));
     }
 
     /**

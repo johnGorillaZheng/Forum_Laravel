@@ -15,15 +15,16 @@ class InboxController extends Controller
 
     public function index()
     {	
-    	$messages = Message::where('to_user_id',Auth::id())
+    	$messages = Message::with(['to_user_id','from_user_id'])
+                ->where('to_user_id',Auth::id())
                 ->orWhere('from_user_id',Auth::id())
-                ->with(['fromUser','toUser'])->get();
+                ->get();
     	return view('inbox.index',['messages' => $messages->unique('dialog_id')->groupBy('to_user_id')]);
     }
 
     public function show($dialogId)
     {
-    	$messages = Message::where('dialog_id',$dialogId)->orderBy('created_at','desc')->get();
+    	$messages = Message::where('dialog_id',$dialogId)->with('fromUser')->orderBy('created_at','desc')->get();
 
     	return view('inbox.show',compact('messages','dialogId'));
     }
