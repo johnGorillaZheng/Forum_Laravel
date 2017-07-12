@@ -12,7 +12,7 @@ class MessageRepository
 
 	public function byId($id)
 	{
-		return Answer::find($id);
+		return Message::find($id);
 	}
 
 	public function exists_in_dialog($me, $user)

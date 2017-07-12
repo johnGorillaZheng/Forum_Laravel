@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Message extends Model
 {
@@ -18,5 +19,23 @@ class Message extends Model
     public function toUser()
     {
     	return $this->belongsTo(User::class,'to_user_id');
+    }
+
+    public function read()
+    {
+        return $this->has_read === 'T';
+    }
+
+    public function unread()
+    {
+        return $this->has_read === 'F';
+    }
+
+    public function shouldAddUnreadClass()
+    {
+        if(Auth::id() === $this->from_user_id) {
+            return false;
+        }
+        return $this->unread();
     }
 }

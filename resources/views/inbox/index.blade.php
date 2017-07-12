@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
                         @foreach($messages as $key => $messageGroup)
-                            <div class="media">
+                            <div class="media {{$messageGroup->first()->shouldAddUnreadClass() ? 'unread':''}}">
                                 <div class="media-left">
                                     <a href="#">
                                         @if(Auth::id() == $key)

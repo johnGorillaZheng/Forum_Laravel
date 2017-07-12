@@ -12019,14 +12019,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             body: '',
-            comments: [],
-            newComment: {
-                user: {
-                    name: MyForum.name,
-                    avatar: MyForum.avatar
-                },
-                body: ''
-            }
+            comments: []
         };
     },
 
@@ -12046,8 +12039,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/api/comment', { 'body': this.body, 'me': this.me, 'type': this.type, 'model': this.model }).then(function (response) {
-                _this.newComment.body = response.data.body;
-                _this.comments.push(_this.newComment);
+                var comment = {
+                    user: {
+                        name: MyForum.name,
+                        avatar: MyForum.avatar
+                    },
+                    body: response.data.body,
+                    created_at: '刚刚'
+                };
+                _this.comments.push(comment);
                 _this.body = '';
                 _this.count++;
             });

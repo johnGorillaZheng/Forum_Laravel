@@ -52,14 +52,7 @@
         data() {
             return{
                 body:'',
-                comments:[],
-                newComment:{
-                    user:{
-                        name:MyForum.name,
-                        avatar:MyForum.avatar
-                    },
-                    body:''
-                }
+                comments:[]
             }      
         },
         computed: {
@@ -76,8 +69,15 @@
         methods : {
             store() {
                 axios.post('/api/comment',{'body':this.body,'me':this.me,'type':this.type,'model':this.model}).then(response => {
-                    this.newComment.body = response.data.body
-                    this.comments.push(this.newComment)
+                    let comment = {
+                        user:{
+                            name:MyForum.name,
+                            avatar:MyForum.avatar
+                        },
+                        body:response.data.body,
+                        created_at:'刚刚'
+                    }
+                    this.comments.push(comment)
                     this.body=''
                     this.count ++
                 })
