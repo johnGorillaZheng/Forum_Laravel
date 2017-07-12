@@ -15,6 +15,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
     <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]);?>;
         @if(Auth::check())
             window.MyForum = {
                 name:"{{Auth::user()->name}}",
@@ -39,8 +42,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="/home">
+                        堪培拉2+2联盟
                     </a>
                 </div>
 
@@ -60,6 +63,9 @@
                             <li class="dropdown">
                                 <a href="/questions/create">提问</a>
                             </li>
+                            <li>
+                                <a href="/inbox">消息</a>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -67,6 +73,9 @@
 
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/user_profile">您的信息</a>
+                                    </li>
                                     <li>
                                         <a href="/notifications">系统消息</a>
                                     </li>

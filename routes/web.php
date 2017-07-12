@@ -24,14 +24,18 @@ Route::resource('questions','QuestionsController',['names' => [
 		'show' => 'questions.show',
 	]]);
 
-Route::post('questions/{question}/answer','AnswersController@store');
+Route::post('/questions/{question}/answer','AnswersController@store');
 
-Route::get('questions/{question}/follow','QuestionFollowController@follow');
+Route::get('/questions/{question}/follow','QuestionFollowController@follow');
 
-Route::get('notifications','NotificationsController@index');
+Route::get('/notifications','NotificationsController@index');
 
-Route::get('inbox','InboxController@index');
+Route::get('/inbox','InboxController@index');
 
-Route::get('inbox/{dialogId}','InboxController@show');
+Route::get('/inbox/{dialogId}','InboxController@show');
 
-Route::post('inbox/{dialogId}/store','InboxController@store');
+Route::post('/inbox/{dialogId}/store','InboxController@store');
+
+Route::get('/user_profile','ProfileController@show');
+
+Route::post('/user_profile/avatar','ProfileController@changeAvatar');
