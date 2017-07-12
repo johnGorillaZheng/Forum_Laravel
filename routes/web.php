@@ -39,3 +39,7 @@ Route::post('/inbox/{dialogId}/store','InboxController@store');
 Route::get('/user_profile','ProfileController@show');
 
 Route::post('/user_profile/avatar','ProfileController@changeAvatar');
+
+Route::post('/user_profile/password_change','ProfileController@changePassword');
+
+Route::post('/user_profile/change_name','ProfileController@changeName');
