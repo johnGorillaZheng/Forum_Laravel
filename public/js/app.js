@@ -25842,7 +25842,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * [param] field
          */
         cropSuccess: function cropSuccess(imgDataUrl, field) {
-            console.log('-------- crop success --------');
             this.imgDataUrl = imgDataUrl;
         },
 
@@ -25853,9 +25852,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * [param] field
          */
         cropUploadSuccess: function cropUploadSuccess(response, field) {
-            console.log('-------- upload success --------');
-            console.log(response);
-            console.log('field: ' + field);
+            this.imgDataUrl = response.url;
+            this.toggleShow();
         },
 
         /**

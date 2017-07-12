@@ -23,7 +23,7 @@ class ProfileController extends Controller
     	$file = $request->file('img');
     	$filename = md5(time().Auth::id()).'.'.$file->getClientOriginalExtension();
     	$file->move(public_path('avatars'), $filename);
-    	$me->avatar = asset(public_path('avatars/'.$filename));
+    	$me->avatar = '/avatars'.'/'.$filename;
     	$me->save();
 
     	return ['url' => $me->avatar];
