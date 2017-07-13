@@ -5,10 +5,9 @@
 </head>
 <body>
 	<h1>Hi, {{$name}}</h1>
-	<h2>You need to sign up</h2>
+	<h2>请验证您的邮箱</h2>
 	<p>
-		You need to confirm your email address.
-		<a href="{{route('confirmation',$confirmation_token)}}">click me to verify your email</a>
+		<a href="{{route('confirmation',$confirmation_token)}}">点击这里，激活你的账号</a>
 	</p>
 </body>
 </html>

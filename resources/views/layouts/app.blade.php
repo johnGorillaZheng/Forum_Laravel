@@ -72,13 +72,18 @@
                                 </a>
 
 
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" role="menu" style="text-align: center;">
                                     <li>
-                                        <a href="/user_profile">您的信息</a>
+                                        <a href="/user_profile">个人设置</a>
                                     </li>
                                     <li>
                                         <a href="/notifications">系统消息</a>
                                     </li>
+                                    @if(Auth::user()->is_admin == 'T')
+                                        <li>
+                                            <a href="/admin/users">管理员界面</a>
+                                        </li>
+                                    @endif
 
                                     <li>
                                         <a href="{{ route('logout') }}"

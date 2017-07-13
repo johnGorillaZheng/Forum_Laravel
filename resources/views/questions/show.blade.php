@@ -107,8 +107,6 @@
                                               me="{{ Auth::id() }}">
                                     </comments> 
                                 </div>
-
-  
                             </div>
                             <hr>
                         @endforeach

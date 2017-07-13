@@ -71,13 +71,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    没有什么不是一顿烤串不能解决的<br>
-                    如果有<br>
-                    就来两顿
-                </div>
-
-                <div>
-                    <h2>尼古拉斯·赵四</h2>
+                    工大无疆
                 </div>
             </div>
         </div>

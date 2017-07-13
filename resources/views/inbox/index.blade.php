@@ -21,11 +21,21 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <a href="#">
+                                        <a href="/inbox/{{$messageGroup->last()->dialog_id}}">
                                             @if(Auth::id() == $key)
-                                                {{$messageGroup->first()->fromUser->name}}
+                                                {{$messageGroup->last()->fromUser->name}}
+                                                @if($messageGroup->last()->has_read == 'F')
+                                                    <small>未读</small>
+                                                @else
+                                                    <small>已读</small>
+                                                @endif
                                             @else
-                                                {{$messageGroup->first()->toUser->name}}
+                                                {{$messageGroup->last()->toUser->name}}
+                                                @if($messageGroup->last()->has_read == 'F')
+                                                    <small>未读</small>
+                                                @else
+                                                    <small>已读</small>
+                                                @endif
                                             @endif
                                         </a>  
                                     </h4>

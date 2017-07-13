@@ -43,3 +43,5 @@ Route::post('/user_profile/avatar','ProfileController@changeAvatar');
 Route::post('/user_profile/password_change','ProfileController@changePassword');
 
 Route::post('/user_profile/change_name','ProfileController@changeName');
+
+Route::get('/admin/users','AdminController@showUsers');
