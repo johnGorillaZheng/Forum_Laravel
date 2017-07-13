@@ -45,3 +45,9 @@ Route::post('/user_profile/password_change','ProfileController@changePassword');
 Route::post('/user_profile/change_name','ProfileController@changeName');
 
 Route::get('/admin/users','AdminController@showUsers');
+
+Route::get('/admin/questions','AdminController@showQuestions');
+
+Route::get('/admin/answers','AdminController@showAnswers');
+
+Route::get('/admin/question/{id}','AdminController@showSpecificQuestion');
