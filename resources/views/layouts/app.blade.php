@@ -60,12 +60,17 @@
                             <li><a href="{{ route('login') }}">登陆</a></li>
                             <li><a href="{{ route('register') }}">注册</a></li>
                         @else
+                        
+                            <li>
+                                <a href="/home">首页</a>
+                            </li>
                             <li class="dropdown">
                                 <a href="/questions/create">提问</a>
                             </li>
                             <li>
                                 <a href="/inbox">消息</a>
                             </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -73,6 +78,7 @@
 
 
                                 <ul class="dropdown-menu" role="menu" style="text-align: center;">
+
                                     <li>
                                         <a href="/user_profile">个人设置</a>
                                     </li>

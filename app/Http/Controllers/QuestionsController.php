@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Follow;
 use Auth;
 use App\Repositories\QuestionRepository;
 
@@ -56,6 +57,7 @@ class QuestionsController extends Controller
         $question = $this->questionRepository->create($data);
         $question->increment('following_count');
         $question->topics()->attach($topics);
+        $this->userFollowThisQuestion($question->id,Auth::id());
         return redirect()->route('questions.show',[$question->id]);
 
     }
@@ -126,6 +128,14 @@ class QuestionsController extends Controller
             return redirect('/');
         }
         abort(403,'Forbidden');
+    }
+
+    public function userFollowThisQuestion($question_id, $user_id)
+    {
+        Follow::create([
+            'user_id' => $user_id,
+            'question_id'=> $question_id
+        ]);
     }
 
 }

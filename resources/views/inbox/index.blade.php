@@ -25,23 +25,23 @@
                                             @if(Auth::id() == $key)
                                                 {{$messageGroup->last()->fromUser->name}}
                                                 @if($messageGroup->last()->has_read == 'F')
-                                                    <small>未读</small>
+                                                    <small>朕已阅</small>
                                                 @else
-                                                    <small>已读</small>
+                                                    <small>朕未看</small>
                                                 @endif
                                             @else
                                                 {{$messageGroup->last()->toUser->name}}
                                                 @if($messageGroup->last()->has_read == 'F')
-                                                    <small>未读</small>
+                                                    <small>对方未读</small>
                                                 @else
-                                                    <small>已读</small>
+                                                    <small>对方已读</small>
                                                 @endif
                                             @endif
                                         </a>  
                                     </h4>
                                     <p>
                                         <a href="/inbox/{{$messageGroup->last()->dialog_id}}">
-                                            {{$messageGroup->last()->body}}
+                                            {{ Auth::id() == $key?"对方":"我" }}：{{$messageGroup->last()->body}}
                                         </a>
                                     </p>
                                 </div>

@@ -19,8 +19,7 @@
                         <div class="form-group">
                             <label for="topic">话题:</label>
                             <select name="topics[]" class="js-example-placeholder-multiple js-data-example-ajax form-control" multiple="multiple"></select>
-
-
+                            <small>小说明：这个输入框可以输入多个话题，当打完字时，请先按一下空格，再按回车，生成tag，很抱歉用户体验很糟糕，我会在后续改进(´-ω-｀)。。。 </small>
                         </div>
                         <div class="form-group">
                             <label for="body">描述:</label>
