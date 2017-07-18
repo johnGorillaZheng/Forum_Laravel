@@ -6797,7 +6797,7 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-body {
-  padding: 15px;
+  padding: 10px 10px 1px 10px;
 }
 
 .panel-body:before,

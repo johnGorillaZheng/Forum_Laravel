@@ -55,18 +55,18 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <center>
-                        <h4>这个问题</h4>
+                        <h4>这个帖子</h4>
                         <h2>{{ $question->following_count }}</h2>
                         <h4>关注者</h4>
                     </center>
                     
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="padding-bottom: 10px;">
                     <center>
                         <question-follow-button question="{{ $question->id }}" user="{{ Auth::id() }}">
                         </question-follow-button>              
                         <a href="#container" class="btn btn-primary">
-                            编写答案
+                            跟帖
                         </a>
                     </center>
                 </div>
@@ -76,7 +76,7 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{$question->answers_count}} 个答案
+                    {{$question->answers_count}} 个回复
                 </div>
                                  
                 <div class="panel-body">
@@ -120,7 +120,7 @@
                                     <label for="body">回答:</label>
                                     <script id="container" name="body" style="height: 120px" type="text/plain"></script>
                                 </div>
-                                    <center><button class="btn btn-success " type="submit">提交答案</button></center>
+                                    <center><button class="btn btn-success " type="submit">提交</button></center>
                             </form>
                         </div>
                     @else
@@ -136,7 +136,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <center>
-                        <span><h3>关于提问者</h3></span>                            
+                        <span><h3>关于发帖者</h3></span>                            
                         <a href="">
                             <div>
                                 <img width="80px" src="{{ $question->user->avatar }}" alt="{ $question->user->name }}">
@@ -150,12 +150,12 @@
                 <div class="panel-body">
                     <div class="col-xs-6">
                         <center>
-                            <span><h4>提问</h4></span><span><h4>{{$question->user->questions_count}}</h4></span>
+                            <span><h4>发帖</h4></span><span><h4>{{$question->user->questions_count}}</h4></span>
                         </center>
                     </div>
                     <div class="col-xs-6">
                         <center>
-                            <span><h4>回答</h4></span><span><h4>{{$question->user->answers_count}}</h4></span>
+                            <span><h4>回复</h4></span><span><h4>{{$question->user->answers_count}}</h4></span>
                         </center>
                     </div>
                     @if($question->user_id != Auth::id())
