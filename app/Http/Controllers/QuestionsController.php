@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Follow;
 use Auth;
 use App\Repositories\QuestionRepository;
+use App\User;
 
 
 class QuestionsController extends Controller
@@ -26,6 +27,11 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = $this->questionRepository->getQuestionFeed();
+        if (User::where('id', Auth::id())->value('is_active') == 0) {
+            flash('<center>我们已经给您发送一封激活邮件，请去验证，不然下次登不上了</center>',
+                  'success');
+            return view('questions.index',compact('questions'));
+        }
         return view('questions.index',compact('questions'));
     }
 
