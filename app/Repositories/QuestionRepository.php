@@ -50,7 +50,7 @@ class QuestionRepository
 
 	public function getQuestionFeed()
 	{
-		return Question::published()->latest('updated_at')->with('user')->get();
+		return Question::published()->latest('updated_at')->with('user')->paginate(16);
 	}
 
 	public function getQuestionCommentsById($id)

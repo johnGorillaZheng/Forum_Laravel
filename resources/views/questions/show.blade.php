@@ -94,18 +94,23 @@
                                             {{ $answer->user->name }}
                                         </a>
                                     </h4>
-                                    {!! $answer->body !!}
-                                    {!! $answer->updated_at !!} <br>
-                                    <user-vote-button answer="{{ $answer->id }}" 
+                                    <div>
+                                        {!! $answer->body !!}
+                                        {!! $answer->updated_at !!}   
+                                    </div>
+
+                                    <div style="height: 25px; margin-top: 5px;">
+                                        <user-vote-button answer="{{ $answer->id }}" 
                                                       me="{{ Auth::id() }}" 
                                                       count="{{ $answer->votes_count }}"
                                                       style="float: left;">
-                                    </user-vote-button>
-                                    <comments type="answer" 
+                                        </user-vote-button>
+                                        <comments type="answer" 
                                               model="{{ $answer->id }}"
                                               count="{{ $answer->comments_count }}"
                                               me="{{ Auth::id() }}">
-                                    </comments> 
+                                        </comments> 
+                                    </div>
                                 </div>
                             </div>
                             <hr>
@@ -150,26 +155,28 @@
                 <div class="panel-body">
                     <div class="col-xs-6">
                         <center>
-                            <span><h4>发帖</h4></span><span><h4>{{$question->user->questions_count}}</h4></span>
+                            <span><h4>发帖</h4></span>
+                            <span><h4>{{$question->user->questions_count}}</h4></span>
+                            @if($question->user_id != Auth::id())  
+                                <span style="height: 30px;">                          
+                                    <user-follow-button user="{{$question->user_id}}" me="{{Auth::id()}}">
+                                    </user-follow-button>
+                                </span>
+                            @endif
                         </center>
                     </div>
                     <div class="col-xs-6">
                         <center>
                             <span><h4>回复</h4></span><span><h4>{{$question->user->answers_count}}</h4></span>
+                            @if($question->user_id != Auth::id())
+                                <span style="height: 30px;">
+                                    <send-message user="{{$question->user_id}}" me="{{Auth::id()}}">
+                                    </send-message>
+                                </span>
+                            @endif
                         </center>
                     </div>
-                    @if($question->user_id != Auth::id())
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            <center>
-                                    <user-follow-button user="{{$question->user_id}}" me="{{Auth::id()}}">
-                                    </user-follow-button>
-                                    <send-message user="{{$question->user_id}}" me="{{Auth::id()}}"></send-messag>
-                            </center>
-                        </h4>
-                    </div>
-                    @else
-                    @endif
+                    <div class="col-xs-12" style="height: 10px"></div>
                 </div>
             </div>
         </div>

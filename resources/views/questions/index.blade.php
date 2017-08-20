@@ -54,6 +54,11 @@
                         </div>
                         <hr>
                     @endforeach
+                    <div>
+                        <center>
+                            {{ $questions->links() }}
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
