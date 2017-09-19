@@ -11,14 +11,14 @@
                 <div class="panel-body">
                     @foreach($questions as $question)
                         <div class="panel-body">
-                            <div class="col-xs-1 hidden-xs">
+                            <div class="hidden-xs col-sm-2 col-lg-1">
                                 <a href="#">
                                     <img src="{{ $question->user->avatar }}" 
                                         alt="{{ $question->user->name }}"
                                         style="width: 40px;">
                                 </a>
                             </div>
-                            <div class="col-xs-8">
+                            <div class="col-xs-12 col-sm-10 col-lg-8">
                                 <h4 class="media-heading">
                                     <a href="/questions/{{ $question->id }}">
                                         <div>{{ $question->title }}</div>
@@ -35,7 +35,7 @@
                                     </a>
                                 </h4>
                             </div>
-                            <div class="col-xs-3 hidden-md hidden-sm hidden-xs">
+                            <div class="hidden-md hidden-sm hidden-xs col-lg-3">
                                 <div class="thumbnail" style="background-color: #eeeeee; width: 45%;float: left;">
                                     <center>
                                         <h6>回复
