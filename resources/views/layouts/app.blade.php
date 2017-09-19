@@ -49,18 +49,8 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <form action="">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <input type="text" class="form-control" style="margin-top: 5px;">
-                            </li>
-                            <li>
-                                <button class="btn btn-primary" style="margin-top: 5px;">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </li>
-                        </ul>
-                    </form>
+                    <ul class="nav navbar-nav">
+                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->

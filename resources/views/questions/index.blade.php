@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     @foreach($questions as $question)
                         <div class="panel-body">
-                            <div class="col-xs-1">
+                            <div class="col-xs-1 hidden-xs">
                                 <a href="#">
                                     <img src="{{ $question->user->avatar }}" 
                                         alt="{{ $question->user->name }}"
@@ -27,14 +27,15 @@
                                     <a href="/questions/{{ $question->id }}">
                                         <h6>
                                             发起人：{{ $question->user->name }}
-                                                   {{ $question->created_at->format('Y-m-d') }}
                                                    &nbsp;&nbsp;&nbsp;
-                                            最后回复：{{ $question->updated_at }}
+                                            <span class="hidden-sm hidden-xs">
+                                                最后回复：{{ $question->updated_at }}
+                                            </span>
                                         </h6>
                                     </a>
                                 </h4>
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-xs-3 hidden-md hidden-sm hidden-xs">
                                 <div class="thumbnail" style="background-color: #eeeeee; width: 45%;float: left;">
                                     <center>
                                         <h6>回复

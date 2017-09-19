@@ -70,9 +70,15 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    工大无疆
-                </div>
+                <center><img src="{{ asset('public/default/npu-logo') }}" alt=""></center>
+                <div class="m-b-md">
+                    <h1>
+                        <span>西岳轩昂     北斗辉煌     泽被万方   化育先翔</span><br>
+                        <span>巍哉学府     辈出栋梁     重德厚生   国乃盛强</span><br>
+                        <span>千仞之墙     百炼之钢     缕木铄金   飞天巡洋</span><br>
+                        <span>公诚勇毅     永矢勿忘     中华灿烂   工大无疆</span>
+                    </h1>
+                 </div>   
             </div>
         </div>
     </body>
