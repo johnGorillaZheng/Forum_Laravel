@@ -63,12 +63,8 @@
                     @if (Auth::check())
                         <a href="{{ url('/home') }}" class="button btn btn-primary"><h4>首页</h4></a>
                     @else
-                        <button class="btn btn-primary">
-                            <a href="{{ url('/login') }}" class="btn btn-primary"><h5>登 录</h5></a>
-                        </button>
-                        <button class="btn btn-primary">
-                            <a href="{{ url('/register') }}" class="button btn btn-primary"><h5>注 册</h5></a>
-                        </button>
+                        <a href="{{ url('/login') }}" class="btn btn-primary" role="button" style="color: white;"><h5>登 录</h5></a>
+                        <a href="{{ url('/register') }}" class="btn btn-primary" role="button" style="color: white;"><h5>注 册</h5></a>
                     @endif
                 </div>
             @endif
