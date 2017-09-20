@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <!-- Styles -->
         <style>
             html, body {
@@ -61,24 +61,28 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">首页</a>
+                        <a href="{{ url('/home') }}" class="button btn btn-primary"><h4>首页</h4></a>
                     @else
-                        <a href="{{ url('/login') }}">登 录</a>
-                        <a href="{{ url('/register') }}">注 册</a>
+                        <button class="btn btn-primary">
+                            <a href="{{ url('/login') }}" class="btn btn-primary"><h5>登 录</h5></a>
+                        </button>
+                        <button class="btn btn-primary">
+                            <a href="{{ url('/register') }}" class="button btn btn-primary"><h5>注 册</h5></a>
+                        </button>
                     @endif
                 </div>
             @endif
 
             <div class="content">
-                <center><img src="{{ asset('public/default/npu-logo') }}" alt=""></center>
-                <div class="m-b-md">
-                    <h1>
-                        <span>西岳轩昂     北斗辉煌     泽被万方   化育先翔</span><br>
-                        <span>巍哉学府     辈出栋梁     重德厚生   国乃盛强</span><br>
-                        <span>千仞之墙     百炼之钢     缕木铄金   飞天巡洋</span><br>
-                        <span>公诚勇毅     永矢勿忘     中华灿烂   工大无疆</span>
-                    </h1>
-                 </div>   
+                <center><img src="{{ url('/image/default/npu-logo.png') }}" alt=""></center>
+                    <div class="col-sm-6 col-xs-12"><h1>西岳轩昂     北斗辉煌</h1></div>
+                    <div class="col-sm-6 col-xs-12"><h1>泽被万方     化育先翔</h1></div>
+                    <div class="col-sm-6 col-xs-12"><h1>巍哉学府     辈出栋梁</h1></div>
+                    <div class="col-sm-6 col-xs-12"><h1>重德厚生     国乃盛强</h1></div>
+                    <div class="col-sm-6 col-xs-12"><h1>千仞之墙     百炼之钢</h1></div>
+                    <div class="col-sm-6 col-xs-12"><h1>缕木铄金     飞天巡洋</h1></div>
+                    <div class="col-sm-6 col-xs-12"><h1>公诚勇毅     永矢勿忘</h1></div>
+                    <div class="col-sm-6 col-xs-12"><h1>中华灿烂     工大无疆</h1></div>
             </div>
         </div>
     </body>
